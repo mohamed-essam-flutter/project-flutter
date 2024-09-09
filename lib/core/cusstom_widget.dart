@@ -13,15 +13,15 @@ class custom_button_widget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: width ?? 200,
+      width: width,
       height: hight,
-      child: ElevatedButton(onPressed: onPressed, child: Text(text,style: TextStyle(
-        color: Colors.white
-      ),),style:ElevatedButton.styleFrom(
+      child: ElevatedButton(onPressed: onPressed,style:ElevatedButton.styleFrom(
         backgroundColor: Appcolors.blue,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10)
         )
-      ),));
+      ), child: Text(text,style: TextStyle(
+        color: Colors.white
+      ),),));
   }
 }

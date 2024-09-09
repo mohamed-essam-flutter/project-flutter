@@ -1,16 +1,13 @@
-import 'dart:ffi';
 import 'dart:io';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:gap/gap.dart';
-import 'package:hive/hive.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:taskati/core/AppColors.dart';
 import 'package:taskati/core/cusstom_widget.dart';
 import 'package:taskati/core/intro_add_task.dart';
 import 'package:taskati/core/naviggator.dart';
+import 'package:taskati/services/local_storage.dart';
 class Profile extends StatefulWidget {
   const Profile({super.key});
 
@@ -25,15 +22,15 @@ class _ProfileState extends State<Profile> {
   
   @override
   Widget build(BuildContext context) {
-    var Box=Hive.box('UserBox');
+   
     return Scaffold(
       appBar: AppBar(
         actions: [
           TextButton(onPressed: (){
             if(name!=null&&path!=null){
-              Box.put('name',name);
-              Box.put('image',path);
-              Box.put('upload',true);
+              LocalStorage.CacheData('name',name);
+              LocalStorage.CacheData('image',path);
+              LocalStorage.CacheData('upload',true);
               pub_replace(context: context, route: IntroAddTask());
 
             }else if(name==null && path!=null ){
